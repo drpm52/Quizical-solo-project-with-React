@@ -8,7 +8,10 @@ export default function QuizCard({ questionsArray }) {
   const shuffledAnswers = allAnswers.sort(() => Math.random() - 0.5);
 
   function handleClickAnswer(e) {
-    e.target.classList.toggle("blue") && e.target.classList.toggle("selected");
+    e.target.classList.toggle("blue") 
+     e.target.classList.toggle("selected");
+     e.target.value === e.target.dataset.correct_answer ? console.log("correct!"): console.log("wrong!")
+     console.log(e.target.dataset.correct_answer);
   }
   // console.log(updatedSelectedAnswers);
 
@@ -23,7 +26,7 @@ export default function QuizCard({ questionsArray }) {
               <button
                 className={
                   answer === correct_answer
-                    ? "answer-btn correct"
+                    ? "answer-btn correct" 
                     : "answer-btn"
                 }
                 name={question}

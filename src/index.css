@@ -64,6 +64,7 @@ button {
 }
 .check-answer-btn,
 .start-page button:hover,
+.play-again-btn:hover
 
 { 
   transform: scale(1.1);
@@ -80,6 +81,7 @@ button {
 .blue {
   background-color: #d6dbf5;
 }
+
 .quiz-cards {
   margin: 0 auto;
   height: 80%;
@@ -131,12 +133,12 @@ button {
   cursor:pointer;
   
 }
-.answer-btns-div input[type="radio"] {
+/* .answer-btns-div input[type="radio"] {
   opacity: 0;
   position: fixed;
   width: 0;
   visibility: hidden;
-}
+} */
 /* Style the label when the associated radio button is checked */
 
 /* .answer-btns-div button:focus {
@@ -145,6 +147,7 @@ button {
 /* .selected{
   background-color: #d6dbf5;
 } */
+.play-again-btn,
 .check-answer-btn {
   margin: 2em auto;
   padding: 1em 2em;
@@ -152,6 +155,17 @@ button {
   color: #f5f7fb;
   border: none;
   border-radius: 15px;
+}
+.play-again{
+justify-content: space-around;
+align-items: center;
+}
+.results{
+ font-weight: 700;
+ font-size: .8rem;
+}
+.hidden{
+  display:none;
 }
 @media (max-width: 450px) {
   html {
