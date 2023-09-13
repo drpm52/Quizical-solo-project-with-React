@@ -6,12 +6,25 @@ export default function QuizCard({ questionsArray }) {
   const { question, incorrect_answers, correct_answer } = questionsArray;
   const allAnswers = [...incorrect_answers, correct_answer];
   const shuffledAnswers = allAnswers.sort(() => Math.random() - 0.5);
+  
+ 
 
   function handleClickAnswer(e) {
-    e.target.classList.toggle("blue") 
-     e.target.classList.toggle("selected");
-     e.target.value === e.target.dataset.correct_answer ? console.log("correct!"): console.log("wrong!")
-     console.log(e.target.dataset.correct_answer);
+   
+    const selectedAnswerBtns = document.querySelectorAll(".selected")
+   for(const answer of  selectedAnswerBtns)  {if (answer.name === e.target.name){
+      answer.classList.remove("selected")
+      answer.classList.remove("blue")
+    }}
+    console.log(selectedAnswerBtns);
+    
+    
+     
+     e.target.classList.add("blue") 
+     e.target.classList.add("selected");
+    
+    
+
   }
   // console.log(updatedSelectedAnswers);
 
@@ -48,12 +61,3 @@ export default function QuizCard({ questionsArray }) {
   );
 }
 
-{
-  /* <button
-                className="answer-btn row center"
-                onClick={(e) => handleAnswer(e, correct_answer)}
-                id={answer}
-              >
-                {he.decode(answer)}
-                </button> */
-}

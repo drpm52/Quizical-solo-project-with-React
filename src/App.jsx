@@ -70,7 +70,11 @@ function App() {
       }
     });
     console.log(correctAnswersArr, correctAnswersArr.length);
+    
     localStorage.setItem("correctAnswersNum", correctAnswersArr.length);
+    // const updatedCorrectAnswersNum = parseInt(localStorage.getItem("correctAnswersNum"));
+    // document.getElementsByClassName("results").textContent = `You scored ${updatedCorrectAnswersNum}/5 correct answers`
+  // console.log(updatedCorrectAnswersNum);
     document.querySelector(".check-answer-btn").classList.add("hidden");
     document.querySelector(".play-again").classList.remove("hidden");
   }
@@ -107,9 +111,7 @@ function App() {
           </button>
 
           <div className="play-again hidden row">
-            <p className="results">{`You scored ${Number(localStorage.getItem(
-              "correctAnswersNum"
-            ))}/5 correct answers`}</p>
+            <p className="results">{`You scored ${localStorage.getItem("correctAnswersNum")}/5 correct answers`}</p>
             <button className="play-again-btn" 
             onClick={handlePlayAgain}>
               Play again
