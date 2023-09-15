@@ -1,4 +1,3 @@
-
 import { nanoid } from "nanoid";
 import he from "he";
 
@@ -6,27 +5,21 @@ export default function QuizCard({ questionsArray }) {
   const { question, incorrect_answers, correct_answer } = questionsArray;
   const allAnswers = [...incorrect_answers, correct_answer];
   const shuffledAnswers = allAnswers.sort(() => Math.random() - 0.5);
-  
- 
 
   function handleClickAnswer(e) {
-   
-    const selectedAnswerBtns = document.querySelectorAll(".selected")
-   for(const answer of  selectedAnswerBtns)  {if (answer.name === e.target.name){
-      answer.classList.remove("selected")
-      answer.classList.remove("blue")
-    }}
-    console.log(selectedAnswerBtns);
-    
-    
-     
-     e.target.classList.add("blue") 
-     e.target.classList.add("selected");
-    
-    
+    const selectedAnswerBtns = document.querySelectorAll(".selected");
+    for (const answer of selectedAnswerBtns) {
+      if (answer.name === e.target.name) {
+        answer.classList.remove("selected");
+        answer.classList.remove("blue");
+      }
+    }
+  
 
+    e.target.classList.add("blue");
+    e.target.classList.add("selected");
   }
-  // console.log(updatedSelectedAnswers);
+
 
   return (
     <div className="quiz-card">
@@ -39,7 +32,7 @@ export default function QuizCard({ questionsArray }) {
               <button
                 className={
                   answer === correct_answer
-                    ? "answer-btn correct" 
+                    ? "answer-btn correct"
                     : "answer-btn"
                 }
                 name={question}
@@ -60,4 +53,3 @@ export default function QuizCard({ questionsArray }) {
     </div>
   );
 }
-

@@ -5,10 +5,10 @@ import StartPage from "./components/StartPage";
 import QuizCard from "./components/QuizCard";
 
 const correctAnswersArr = [];
+let correctsAnswersNum = 0;
 
 function App() {
   const [questionsArray, setQuestionsArray] = useState([]);
-
   const [startQuiz, setStartQuiz] = useState(false);
 
   useEffect(() => {
@@ -19,11 +19,8 @@ function App() {
           if (data.results && data.results.length > 0) {
             setQuestionsArray(data.results);
           }
-        
         });
   }, [startQuiz]);
-
-  createQuizcard(questionsArray);
 
   function createQuizcard(arr) {
     return arr.map((el, index) => (
@@ -44,10 +41,9 @@ function App() {
       className: answer.className,
       key: answer.id,
     }));
-    console.log(answerData);
+
     localStorage.setItem("answerData", JSON.stringify(answerData));
     const storedAnswerArr = JSON.parse(localStorage.getItem("answerData"));
-    console.log(storedAnswerArr);
 
     storedAnswerArr.forEach((answerData) => {
       const key = answerData.key;
@@ -69,22 +65,22 @@ function App() {
         answerBtn.classList.add("green");
       }
     });
-    console.log(correctAnswersArr, correctAnswersArr.length);
-    
-    localStorage.setItem("correctAnswersNum", correctAnswersArr.length);
-    // const updatedCorrectAnswersNum = parseInt(localStorage.getItem("correctAnswersNum"));
-    // document.getElementsByClassName("results").textContent = `You scored ${updatedCorrectAnswersNum}/5 correct answers`
-  // console.log(updatedCorrectAnswersNum);
+
     document.querySelector(".check-answer-btn").classList.add("hidden");
     document.querySelector(".play-again").classList.remove("hidden");
+    correctsAnswersNum = correctAnswersArr.length;
+
+    const paragraph = document.querySelector(".results");
+    !paragraph.className.includes("hidden")
+      ? (paragraph.textContent = `You scored ${correctsAnswersNum}/5 correct answers`)
+      : "";
   }
 
   function handlePlayAgain() {
-    console.log("play again!");
     document.querySelector(".play-again").classList.add("hidden");
-    localStorage.clear()
-    setStartQuiz(false)
-    
+    localStorage.clear();
+    correctsAnswersNum = 0;
+    setStartQuiz(false);
   }
 
   return (
@@ -111,9 +107,8 @@ function App() {
           </button>
 
           <div className="play-again hidden row">
-            <p className="results">{`You scored ${localStorage.getItem("correctAnswersNum")}/5 correct answers`}</p>
-            <button className="play-again-btn" 
-            onClick={handlePlayAgain}>
+            <p className="results"></p>
+            <button className="play-again-btn" onClick={handlePlayAgain}>
               Play again
             </button>
           </div>
